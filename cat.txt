@@ -20,3 +20,11 @@ install prettier
 video 2.5
 install shan ui
 ->npx shadcn@latest init
+->npx shadcn@latest add
+->instal component UI
+
+video 2.6
+konfigurasi yang harus anda samakan
+npm install -D @tailwindcss/typography
+->php artisan storage
+
