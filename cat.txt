@@ -1,0 +1,22 @@
+tools project pi
+video 2.1 = install laravel
+-D:\project_pi>composer create-project laravel/laravel project_pi
+Jalanin laravel
+-php artisan serve
+
+video 2.2 = sambungkan project ke github
+video 2.3 =instalasi laravel breeze dan inertia react
+->composer require laravel/breeze --dev
+->php artisan breeze:install
+-pilih react with inertia
+-pilih inertia ssr 
+>php artisan migrate
+
+video 2.4
+install prettier
+->npm install -D prettier prettier-plugin-organize-imports prettier-plugin-tailwindcss
+->jalaninnya npm run format
+
+video 2.5
+install shan ui
+->npx shadcn@latest init
