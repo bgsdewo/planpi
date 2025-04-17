@@ -26,5 +26,6 @@ install shan ui
 video 2.6
 konfigurasi yang harus anda samakan
 npm install -D @tailwindcss/typography
-->php artisan storage
+->php artisan storage:link
+->npm i react-icons
 
