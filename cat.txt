@@ -29,3 +29,9 @@ npm install -D @tailwindcss/typography
 ->php artisan storage:link
 ->npm i react-icons
 
+video 2.7
+cuman set up codingan
+
+vide0 2.8
+->composer dump-autoload
+
