@@ -35,3 +35,6 @@ cuman set up codingan
 vide0 2.8
 ->composer dump-autoload
 
+
+video 3.2
+php artisan migrate:fresh
