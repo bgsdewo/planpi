@@ -38,3 +38,7 @@ vide0 2.8
 
 video 3.2
 php artisan migrate:fresh
+
+video 3.3
+->php artisan make:model Workspace -m
+->php artisan migrate
