@@ -45,3 +45,8 @@ video 3.3
 
 video 3.4
 ->php artisan make:model Card -m
+->php artisan migrate
+
+video 3.5
+->php artisan make:model Attachment -m
+->php artisan migrate
