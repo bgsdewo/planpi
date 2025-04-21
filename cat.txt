@@ -32,7 +32,7 @@ npm install -D @tailwindcss/typography
 video 2.7
 cuman set up codingan
 
-vide0 2.8
+vide0 2.8 
 ->composer dump-autoload
 
 
@@ -42,3 +42,6 @@ php artisan migrate:fresh
 video 3.3
 ->php artisan make:model Workspace -m
 ->php artisan migrate
+
+video 3.4
+->php artisan make:model Card -m
