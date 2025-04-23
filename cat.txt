@@ -68,3 +68,8 @@ video 4.2
 ->php artisan serve
 ->npm run dev
 ->npm run format
+
+video 4.3
+->php artisan serve
+->npm run dev
+->npm run format
