@@ -58,3 +58,13 @@ video 3.6
 video 3.7
 ->php artisan make:model Member -m
 ->php artisan migrate
+
+video 4.1
+->php artisan serve
+->npm run dev
+->npm run format
+
+video 4.2
+->php artisan serve
+->npm run dev
+->npm run format
