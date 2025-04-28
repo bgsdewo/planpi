@@ -83,3 +83,9 @@ video 4.5
 ->php artisan serve
 ->npm run dev
 ->npm run format
+
+video 4.11
+->php artisan serve
+->npm run dev
+->npm run format
+->php artisan make:resource UserSingleResource
