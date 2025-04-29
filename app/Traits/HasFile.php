@@ -1,0 +1,30 @@
+<?php
+
+namespace App\Traits;
+
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Database\Eloquent\Model; // Tambahkan ini
+
+trait HasFile
+{
+    public function upload_file(Request $request, string $column, string $folder): ?string
+    {
+        return $request->hasFile($column) ? $request->file($column)->store($folder) : null;
+    }
+
+    public function update_file(Request $request, Model $model, string $column, string $folder): ?string
+    {
+        if ($request->hasFile($column)) {
+            if ($model->$column) {
+                Storage::delete($model->$column);
+            }
+
+            $thumbnail = $request->file($column)->store($folder); // Fix typo dan tambah ;
+        } else {
+            $thumbnail = $model->$column;
+        }
+
+        return $thumbnail;
+    }
+}

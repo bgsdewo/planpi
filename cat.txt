@@ -95,3 +95,6 @@ video 4.12
 ->php artisan serve
 ->npm run dev
 ->npm run format
+
+video 5.1
+->php artisan make:controller WorkspaceController

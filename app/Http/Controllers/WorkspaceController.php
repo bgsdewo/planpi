@@ -20,4 +20,8 @@ class WorkspaceController extends Controller
             'visibilities'=> WorkspaceVisibility::options(),
         ]);
     }
+    public function store(Request $request)
+    {
+        dd($request->all());
+    }
 }
