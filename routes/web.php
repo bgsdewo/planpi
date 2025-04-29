@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\WorkspaceController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Foundation\Application;
@@ -15,10 +16,20 @@ Route::get('/', function () {
     ]);
 });
 
-Route::get(uri:'dashboard',action:[DashboardController::class,'index'])->name(name:'dashboard')
-->middleware(middleware:'auth');
+Route::get('dashboard', [DashboardController::class, 'index'])
+    ->middleware('auth')
+    ->name('dashboard');
 
-Route::get('testing',fn()=>Inertia::render('Testing'));
+
+    Route::controller(WorkspaceController::class)->group(function () {
+        Route::get('workspaces/create', 'create')->name('workspaces.create');
+        Route::post('workspaces/create', 'store')->name('workspaces.store');
+        Route::get('workspaces/p/{workspace:slug}', 'show')->name('workspaces.show');
+        Route::get('workspaces/edit/{workspace:slug}', 'edit')->name('workspaces.edit');
+        Route::put('workspaces/edit/{workspace:slug}', 'update')->name('workspaces.update');
+        Route::delete('workspaces/destroy/{workspace:slug}', 'destroy')->name('workspaces.destroy');
+    });
+
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
