@@ -27,4 +27,10 @@ trait HasFile
 
         return $thumbnail;
     }
+    public function delete_file(Model $model, string $column) :void
+    {
+        if($model -> $column){
+            Storage::delete($model->$column);
+        }
+    }
 }

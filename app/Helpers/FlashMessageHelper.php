@@ -1,9 +1,9 @@
 <?php
 
-if(!function_exists(function:'flashMessage')){
-function flashMessage($message, $type ='succes'): void
+if(!function_exists('flashMessage')){
+function flashMessage($message, $type ='success'): void
 {
     session()->flash('message',$message);
-    session()->flash('message',$type);
+    session()->flash('type',$type);
 }
 }
