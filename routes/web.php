@@ -28,6 +28,9 @@ Route::get('dashboard', [DashboardController::class, 'index'])
         Route::get('workspaces/edit/{workspace:slug}', 'edit')->name('workspaces.edit');
         Route::put('workspaces/edit/{workspace:slug}', 'update')->name('workspaces.update');
         Route::delete('workspaces/destroy/{workspace:slug}', 'destroy')->name('workspaces.destroy');
+
+        Route::post('workspaces/member/{workspace:slug}/store', 'member_store')->name('workspaces.member_store');
+        Route::delete('workspaces/member/{workspace:slug}/destroy', 'member_destroy')->name('workspaces.member_destroy');
     });
 
 
