@@ -102,3 +102,6 @@ video 5.1
 
 video 5.2
 ->php artisan make:resource WorkspaceSidebarResource
+
+video 5.3
+->php artisan make:resource WorkspaceResource
