@@ -5,7 +5,7 @@ namespace App\Http\Resources;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
 use Illuminate\Support\Facades\Storage;
-
+use App\Http\Resources;
 
 class WorkspaceResource extends JsonResource
 {
@@ -23,6 +23,7 @@ class WorkspaceResource extends JsonResource
             'visibility' => $this ->visibility->value,
             'cover' => Storage::url($this->cover),
             'logo' => Storage::url($this->logo),
+            'members' => MemberResource::collection($this->members),
         ];
     }
 }
