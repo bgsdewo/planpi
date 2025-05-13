@@ -98,3 +98,7 @@ video 4.12
 
 video 5.1
 ->php artisan make:controller WorkspaceController
+->php artisan make:request WorkspaceRequest
+
+video 5.2
+->php artisan make:resource WorkspaceSidebarResource

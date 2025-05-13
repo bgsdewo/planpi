@@ -1,12 +1,13 @@
 <?php
 
 namespace App\Http\Middleware;
+use App\Models\Workspace;
 
 use Illuminate\Http\Request;
 use Inertia\Middleware;
 use Tighten\Ziggy\Ziggy;
 use App\Http\Resources\UserSingleResource;
-
+use App\Http\Resources\WorkspaceSidebarResource;
 
 class HandleInertiaRequests extends Middleware
 {
@@ -41,6 +42,9 @@ class HandleInertiaRequests extends Middleware
                 'type' => $request->session()->get('type'),
                 'message' => $request->session()->get('message'),
             ],
+            'workspaces' => fn() => $request->user() ? WorkspaceSidebarResource::collection(
+                Workspace::query()->where('user_id', $request->user()->id)->get()
+            ) : null,
             'ziggy' => fn () => [
                 ...(new Ziggy)->toArray(),
                 'location' => $request->url(),
