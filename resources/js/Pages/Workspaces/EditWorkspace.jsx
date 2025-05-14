@@ -44,8 +44,8 @@ export default function Editworkspace({ workspace, page_settings, visibilities }
                                     id="name"
                                     value={data.name}
                                     onChange={onHandleChange}
-                                    onErrors={errors.name && <InputError message={errors.name} />}
                                 />
+                                {errors.name && <InputError message={errors.name} />}
                             </div>
 
                             <div className="col-span-full">
@@ -55,8 +55,8 @@ export default function Editworkspace({ workspace, page_settings, visibilities }
                                     name="cover"
                                     id="cover"
                                     onChange={(e) => setData(e.target.name, e.target.files[0])}
-                                    onErrors={errors.cover && <InputError message={errors.cover} />}
                                 />
+                                {errors.cover && <InputError message={errors.cover} />}
                             </div>
 
                             <div className="col-span-full">
@@ -66,8 +66,8 @@ export default function Editworkspace({ workspace, page_settings, visibilities }
                                     name="logo"
                                     id="logo"
                                     onChange={(e) => setData(e.target.name, e.target.files[0])}
-                                    onErrors={errors.logo && <InputError message={errors.logo} />}
                                 />
+                                {errors.logo && <InputError message={errors.logo} />}
                             </div>
 
                             <div className="col-span-full">

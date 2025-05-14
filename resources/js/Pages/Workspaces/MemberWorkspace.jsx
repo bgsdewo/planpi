@@ -41,8 +41,8 @@ export default function MemberWorkspace({ action, members }) {
                                     id="email"
                                     value={data.email}
                                     onChange={onHandleChange}
-                                    onErrors={errors.email && <InputError message={errors.email} />}
                                 />
+                                <InputError message={errors.email} />
                             </div>
                         </div>
                     </div>
