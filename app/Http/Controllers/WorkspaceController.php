@@ -12,6 +12,9 @@ use App\Models\Workspace;
 use App\Models\User;
 use App\Http\Resources\WorkspaceResource;
 use App\Models\Member;
+use App\Http\Resources\CardResource;
+use Illuminate\Database\Eloquent\Model;
+use App\Enums\CardStatus;
 class WorkspaceController extends Controller
 {
     use HasFile;
@@ -51,7 +54,18 @@ class WorkspaceController extends Controller
     public function show(Workspace $workspace): Response
     {
         return inertia(component: 'Workspaces/Show',props:[
+            'cards' => fn() => CardResource::collection($workspace->load([
+                'cards' => fn($q) => $q->withCount(['tasks','members','attachments'])->with([
+                    'attachments',
+                    'members',
+                    'tasks' => fn($task) => $task->withCount('children'),
+                ])->orderBy('order')
+            ])->cards),
             'workspace' => fn() => new WorkspaceResource($workspace),
+            'page_settings' =>[
+                'title' => $workspace ->name,
+            ],
+            'statuses' =>fn() => CardStatus::options(),
         ]);
     }
     public function edit(Workspace $workspace) : Response
