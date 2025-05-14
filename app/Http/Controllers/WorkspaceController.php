@@ -11,6 +11,7 @@ use App\Traits\HasFile;
 use App\Models\Workspace;
 use App\Models\User;
 use App\Http\Resources\WorkspaceResource;
+use App\Models\Member;
 class WorkspaceController extends Controller
 {
     use HasFile;
@@ -106,5 +107,12 @@ class WorkspaceController extends Controller
             ]);
             flashMessage('Member succesfully invited');
             return back();
+    }
+    public function member_destroy(Workspace $workspace, Member $member): RedirectResponse
+    {
+        $member->delete();
+
+        flashMessage('Member succesfully deleted');
+        return back();
     }
 }
