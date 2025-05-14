@@ -1,9 +1,10 @@
+import { Badge } from '@/components/ui/badge';
 import { STATUS } from '@/lib/utils';
 
 export default function GetStatusBadge({ status }) {
     const { TODO, INPROGRESS, ONREVIEW, DONE, UNKNOWN } = STATUS;
     let badge, text;
-    switch (priority) {
+    switch (status) {
         case TODO:
             badge = 'bg-red-500 hover:bg-red-600';
             text = TODO;
