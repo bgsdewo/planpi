@@ -108,3 +108,7 @@ video 5.3
 
 video 5.6
 ->php artisan make:resource MemberResource
+
+video 6.1
+->php artisan make:controller CardController
+->php artisan make:request CardRequest
