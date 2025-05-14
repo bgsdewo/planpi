@@ -50,7 +50,8 @@ class CardController extends Controller
         ->orderByDesc('order')
         ->first();
 
-        if($last_card) return 1;
-        return $last_card->order +1;
+        if (!$last_card) return 1;
+return $last_card->order + 1;
+
     }
 }
