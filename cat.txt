@@ -121,3 +121,6 @@ video 6.3
 
 video 7.1
 ->php artisan make:controller MemberCardController
+
+video 7.4
+->php artisan make:controller AttachmentController
