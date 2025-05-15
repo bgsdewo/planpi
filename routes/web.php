@@ -9,6 +9,7 @@ use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 use App\Http\Controllers\MemberCardController;
+use App\Http\Controllers\TaskController;
 Route::get('/', function () {
     return Inertia::render('Welcome', [
         'canLogin' => Route::has('login'),
@@ -55,6 +56,9 @@ Route::controller(AttachmentController::class)->group(function () {
     Route::delete('cards/attachment/{card}/destroy/{attachment}', 'destroy')->name('attachments.destroy');
 })->middleware('auth');
 
+Route::controller(TaskController::class)->group(function () {
+    Route::post('cards/tasks/{card}/create', 'store')->name('tasks.store');
+})->middleware('auth');
 
 
 Route::middleware('auth')->group(function () {

@@ -124,3 +124,7 @@ video 7.1
 
 video 7.4
 ->php artisan make:controller AttachmentController
+->php artisan make:request AttachmentRequest
+
+video 7.5
+->php artisan make:controller TaskController
