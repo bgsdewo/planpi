@@ -7,7 +7,7 @@ use App\Http\Controllers\CardController;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
-
+use App\Http\Controllers\MemberCardController;
 Route::get('/', function () {
     return Inertia::render('Welcome', [
         'canLogin' => Route::has('login'),
@@ -44,6 +44,9 @@ Route::get('dashboard', [DashboardController::class, 'index'])
         Route::delete('cards/{workspace:slug}/destroy/{card}','destroy')->name('cards.destroy');
     })->middleware('auth');
 
+Route::controller(MemberCardController::class)->group(function () {
+    Route::post('cards/member/{card}/store', 'member_store')->name('member_card.store');
+})->middleware('auth');
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');

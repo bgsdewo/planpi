@@ -118,3 +118,6 @@ video 6.2
 
 video 6.3
 ->php artisan make:resource CardSingleResource
+
+video 7.1
+->php artisan make:controller MemberCardController
