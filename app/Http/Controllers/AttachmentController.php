@@ -6,6 +6,7 @@ use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use App\Traits\HasFile;
 use App\Http\Requests\AttachmentRequest;
+use App\Models\Attachment;
 class AttachmentController extends Controller
 {
     use HasFile;
@@ -18,6 +19,15 @@ class AttachmentController extends Controller
             'name' => $request -> name,
         ]);
         flashMessage('Attachment was saved successfully');
+        return back();
+    }
+    public function destroy(Card $card, Attachment $attachment): RedirectResponse
+    {
+        $this->delete_file($attachment,'file');
+        $attachment->delete();
+
+        flashMessage('The attachment was successfully deleted.');
+
         return back();
     }
 

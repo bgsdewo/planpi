@@ -5,7 +5,7 @@ import { Button } from '@/Components/ui/button';
 import { Card, CardContent } from '@/Components/ui/card';
 import { flashMessage } from '@/lib/utils';
 import { Transition } from '@headlessui/react';
-import { useForm } from '@inertiajs/react';
+import { router, useForm } from '@inertiajs/react';
 import { PiPaperclip } from 'react-icons/pi';
 import { toast } from 'sonner';
 
@@ -111,7 +111,22 @@ export default function AttachmentCard({ action, attachments }) {
                                     <Button
                                         variant="link"
                                         className="font-medium text-red-500 hover:text-red-600 hover:no-underline"
-                                        onClick={() => console.log('delete attachment')}
+                                        onClick={() =>
+                                            router.delete(
+                                                route('attachments.destroy', {
+                                                    card: attachment.card_id,
+                                                    attachment: attachment.id,
+                                                }),
+                                                {
+                                                    preserveScroll: true,
+                                                    preserveState: true,
+                                                    onSuccess: (success) => {
+                                                        const flash = flashMessage(success);
+                                                        if (flash) toast[flash.type](flash.message);
+                                                    },
+                                                },
+                                            )
+                                        }
                                     >
                                         Delete
                                     </Button>
