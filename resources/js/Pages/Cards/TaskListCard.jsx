@@ -71,8 +71,8 @@ export default function TaskListCard({ tasks }) {
                                                     {
                                                         preserveScroll: true,
                                                         preserveState: true,
-                                                        onSuccess: () => {
-                                                            const flash = flashMessage();
+                                                        onSuccess: (success) => {
+                                                            const flash = flashMessage(success);
                                                             if (flash) toast[flash.type](flash.message);
                                                         },
                                                     },
