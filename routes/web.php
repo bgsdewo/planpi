@@ -5,6 +5,7 @@ use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\CardController;
 use App\Http\Controllers\AttachmentController;
+use App\Http\Controllers\MyTaskController;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
@@ -64,6 +65,7 @@ Route::controller(TaskController::class)->group(function () {
     Route::put('cards/tasks/{card}/{task}/completed', 'completed')->name('tasks.completed');
 })->middleware('auth');
 
+Route::get('my-tasks',MyTaskController::class)->name('mytasks.index'); 
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
