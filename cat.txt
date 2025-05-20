@@ -142,3 +142,6 @@ video 9.1
 
 video 10.2
 ->npm install lodash
+
+video 12.2
+->npm install chart.js react-chartjs-2
