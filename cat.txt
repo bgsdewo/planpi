@@ -138,3 +138,7 @@ video 8.1
 
 video 9.1
 ->php artisan make:controller MyTaskController -i
+->php artisan make:resource MyTaskResource
+
+video 10.2
+->npm install lodash
