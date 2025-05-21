@@ -11,7 +11,7 @@ import {
 import { useSortable } from '@dnd-kit/sortable';
 import { CSS } from '@dnd-kit/utilities';
 import { Link } from '@inertiajs/react';
-import { PiCheckSquare, PiLinkSimple, PiUser } from 'react-icons/pi';
+import { PiCheckSquare, PiDotsThreeOutlineFill, PiLinkSimple, PiUser } from 'react-icons/pi';
 export default function CardList({ card, workspace, handleDeleteCard }) {
     const { setNodeRef, attributes, listeners, transform, transition, isDragging } = useSortable({
         id: card.id,

@@ -40,10 +40,6 @@ class WorkspaceController extends Controller
             'logo' => $this->upload_file($request,'logo','workspaces/logo'),
             'visibility' => $request->visibility,
         ]);
-        $workspace->members()->create([
-            'user_id' => $request->user()->id,
-            'role' => $workspace->user_id == $request->user()->id ? 'Owner' : 'Member',
-        ]);
 
         flashMessage('Workspace information saved succesfully');
 
@@ -104,7 +100,6 @@ class WorkspaceController extends Controller
         Gate::authorize('delete_workspace',$workspace);
         $this->delete_file($workspace,'cover');
         $this->delete_file($workspace,'logo');
-        $workspace->members()->delete();
         $workspace->delete();
         flashMessage('The workspace has been succesfully deleted');
         return to_route('dashboard');

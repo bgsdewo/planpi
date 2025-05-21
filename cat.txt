@@ -163,3 +163,9 @@ php artisan migrate
 
 video 14.2
 ->php artisan make:policy WorkspacePolicy -m Workspace
+
+video 14.3
+->php artisan make:policy CardPolicy -m Card
+
+video 15.1
+->php artisan make:observer WorkspaceObserver
