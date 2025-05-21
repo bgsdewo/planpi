@@ -6,6 +6,7 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\CardController;
 use App\Http\Controllers\AttachmentController;
 use App\Http\Controllers\MyTaskController;
+use App\Http\Controllers\UserController;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
@@ -25,6 +26,14 @@ Route::get('dashboard', [DashboardController::class, 'index'])
     ->middleware('auth')
     ->name('dashboard');
 
+    Route::controller(UserController::class)->group(function () {
+        Route::get('users', 'index')->name('users.index');
+        Route::get('users/create', 'create')->name('users.create');
+        Route::post('users/create', 'store')->name('users.store');
+        Route::get('users/edit/{workspace:slug}', 'edit')->name('users.edit');
+        Route::put('users/edit/{workspace:slug}', 'update')->name('users.update');
+        Route::delete('users/destroy/{workspace:slug}', 'destroy')->name('users.destroy');
+   })->middleware('auth');
 
     Route::controller(WorkspaceController::class)->group(function () {
         Route::get('workspaces/create', 'create')->name('workspaces.create');
@@ -36,7 +45,7 @@ Route::get('dashboard', [DashboardController::class, 'index'])
 
         Route::post('workspaces/member/{workspace:slug}/store', 'member_store')->name('workspaces.member_store');
         Route::delete('workspaces/member/{workspace}/destroy/{member}', 'member_destroy')->name('workspaces.member_destroy');
-    });
+    })->middleware('auth');
 
     Route::controller(CardController::class)->group(function(){
         Route::get('cards/{workspace:slug}/create','create')->name('cards.create');
@@ -65,7 +74,7 @@ Route::controller(TaskController::class)->group(function () {
     Route::put('cards/tasks/{card}/{task}/completed', 'completed')->name('tasks.completed');
 })->middleware('auth');
 
-Route::get('my-tasks',MyTaskController::class)->name('mytasks.index'); 
+Route::get('my-tasks',MyTaskController::class)->name('mytasks.index');
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');

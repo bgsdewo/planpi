@@ -145,3 +145,7 @@ video 10.2
 
 video 12.2
 ->npm install chart.js react-chartjs-2
+
+video 13.1
+->php artisan make:controller UserController
+->php artisan make:resource UserResource
