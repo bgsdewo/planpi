@@ -152,3 +152,14 @@ video 13.1
 
 video 13.2
 ->php artisan make:request UserRequest
+
+video 14.1
+install  laravel pake spatie
+->composer require spatie/laravel-permission
+->php artisan vendor:publish --tag=laravel-assets --ansi --force
+php artisan migrate
+->php artisan migrate
+->php artisan migrate:fresh --seed
+
+video 14.2
+->php artisan make:policy WorkspacePolicy -m Workspace

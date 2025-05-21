@@ -15,6 +15,7 @@ use App\Models\Member;
 use App\Http\Resources\CardResource;
 use Illuminate\Database\Eloquent\Model;
 use App\Enums\CardStatus;
+use Illuminate\Support\Facades\Gate;
 class WorkspaceController extends Controller
 {
     use HasFile;
@@ -70,6 +71,7 @@ class WorkspaceController extends Controller
     }
     public function edit(Workspace $workspace) : Response
     {
+        Gate::authorize('update_workspace',$workspace);
         return inertia(component: 'Workspaces/Setting',props:[
             'workspace' => fn() => new WorkspaceResource($workspace->load('members')),
             'page_settings' => [
@@ -83,6 +85,7 @@ class WorkspaceController extends Controller
     }
     public function update(Workspace $workspace, WorkspaceRequest $request): RedirectResponse
     {
+        Gate::authorize('update_workspace',$workspace);
         $workspace->update([
             'name' => $name = $request -> name,
             'slug' => str()->slug($name.str()->UUid(10)),
@@ -98,6 +101,7 @@ class WorkspaceController extends Controller
     }
     public function destroy(Workspace $workspace) : RedirectResponse
     {
+        Gate::authorize('delete_workspace',$workspace);
         $this->delete_file($workspace,'cover');
         $this->delete_file($workspace,'logo');
         $workspace->members()->delete();
@@ -107,6 +111,7 @@ class WorkspaceController extends Controller
     }
     public function member_store(Workspace $workspace, Request $request): RedirectResponse
     {
+        Gate::authorize('member_workspace',$workspace);
         $request->validate([
             'email' => [
                 'required',
