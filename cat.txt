@@ -169,3 +169,6 @@ video 14.3
 
 video 15.1
 ->php artisan make:observer WorkspaceObserver
+
+video 15.2
+->php artisan make:observer CardObserver

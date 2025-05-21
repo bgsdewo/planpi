@@ -14,7 +14,10 @@ use App\Models\Task;
 use App\Models\Member;
 use App\Enums\CardStatus;
 use App\Enums\CardPriority;
+use Illuminate\Database\Eloquent\Attributes\ObservedBy;
+use App\Observers\CardObserver;
 
+#[ObservedBy(CardObserver::class)]
 class Card extends Model
 {
     use HasFactory;
