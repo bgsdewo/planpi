@@ -12,10 +12,10 @@ use App\Models\Card;
 use App\Models\Member;
 use App\Models\Attachment;
 use App\Models\Task;
-
+use Spatie\Permission\Traits\HasRoles;
 class User extends Authenticatable
 {
-    use HasFactory, Notifiable;
+    use HasFactory, Notifiable, HasRoles;
 
     protected $fillable = [
         'name',
