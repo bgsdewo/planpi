@@ -4,7 +4,7 @@ import { PiHouse, PiLockKeyOpen, PiPlus, PiSquaresFour, PiUser } from 'react-ico
 
 export default function SidebarResponsive({ auth, url, workspaces }) {
     return (
-        <div className="flex grow flex-col gap-y-5 overflow-y-auto bg-white px-6 pb-2 dark:bg-gray-900">
+        <div className="flex grow flex-col gap-y-5 overflow-y-auto bg-white px-6 pb-2 dark:bg-gray-800">
             <div className="flex h-16 shrink-0 items-center space-x-1.5">
                 <Link href="/" className="-m-1.5 p-1.5 text-2xl font-black leading-relaxed tracking-tighter">
                     Plannify<span className="text-red-500">.</span>
@@ -21,7 +21,7 @@ export default function SidebarResponsive({ auth, url, workspaces }) {
                                     className={cn(
                                         url.startsWith('/dashboard')
                                             ? 'bg-red-500 text-white'
-                                            : 'text-foreground hover:bg-gray-100',
+                                            : 'text-foreground hover:bg-gray-100 dark:hover:bg-red-500',
                                         'group flex gap-x-3 rounded-md p-3 text-sm font-semibold leading-relaxed',
                                     )}
                                 >
@@ -41,7 +41,7 @@ export default function SidebarResponsive({ auth, url, workspaces }) {
                                         className={cn(
                                             url.startsWith('/users')
                                                 ? 'bg-red-500 text-white'
-                                                : 'text-foreground hover:bg-gray-100',
+                                                : 'text-foreground hover:bg-gray-100 dark:hover:bg-red-500',
                                             'group flex gap-x-3 rounded-md p-3 text-sm font-semibold leading-relaxed',
                                         )}
                                     >
@@ -61,7 +61,7 @@ export default function SidebarResponsive({ auth, url, workspaces }) {
                                     className={cn(
                                         url.startsWith('/my-tasks')
                                             ? 'bg-red-500 text-white'
-                                            : 'text-foreground hover:bg-gray-100',
+                                            : 'text-foreground hover:bg-gray-100 dark:hover:bg-red-500',
                                         'group flex gap-x-3 rounded-md p-3 text-sm font-semibold leading-relaxed',
                                     )}
                                 >
@@ -82,7 +82,7 @@ export default function SidebarResponsive({ auth, url, workspaces }) {
                                     className={cn(
                                         url.startsWith('/logout')
                                             ? 'bg-red-500 text-white'
-                                            : 'text-foreground hover:bg-gray-100',
+                                            : 'text-foreground hover:bg-gray-100 dark:hover:bg-red-500',
                                         'group flex w-full gap-x-3 rounded-md p-3 text-sm font-semibold leading-relaxed',
                                     )}
                                 >
@@ -111,20 +111,20 @@ export default function SidebarResponsive({ auth, url, workspaces }) {
                             {workspaces.map((workspace, index) => (
                                 <li key={index}>
                                     <Link
-                                        href={route('workspaces.show'[workspace.memberable.slug])}
+                                        href={route('workspaces.show', workspace.memberable.slug)}
                                         className={cn(
-                                            route().current('workspaces.show', [workspace.memberable.slug])
+                                            route().current('workspaces.show', workspace.memberable.slug)
                                                 ? 'bg-red-500 text-white'
-                                                : 'text-foreground hover:bg-gray-100',
+                                                : 'text-foreground hover:bg-gray-100 dark:hover:bg-red-500',
                                             'group flex w-full gap-x-3 rounded-md p-3 text-sm font-semibold leading-relaxed',
                                         )}
                                     >
                                         <span
                                             className={cn(
-                                                route().current('workspaces.show', [workspace.memberable.slug])
+                                                route().current('workspaces.show', workspace.memberable.slug)
                                                     ? 'border-red-600 text-red-600'
-                                                    : 'border-foreground text-foreground',
-                                                'flex h-6 w-6 shrink-0 items-center justify-center rounded-lg border bg-white text-[0.625rem] font-medium',
+                                                    : 'border-foreground text-foreground dark:hover:bg-red-500',
+                                                'flex h-6 w-6 shrink-0 items-center justify-center rounded-lg border bg-white text-[0.625rem] font-medium text-muted-foreground',
                                             )}
                                         >
                                             {workspace.memberable.name.substring(0, 1)}

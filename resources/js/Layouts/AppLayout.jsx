@@ -1,12 +1,12 @@
+import { ThemeSwitcher } from '@/Components/ThemeSwitcher';
 import { Avatar, AvatarFallback, AvatarImage } from '@/Components/ui/avatar';
-import { Toaster } from '@/Components/ui/sonner';
+import ClientOnlyToaster from '@/Components/ui/ClientOnlyToaster';
 import { Dialog, Transition } from '@headlessui/react';
 import { Head, Link, usePage } from '@inertiajs/react';
 import { Fragment, useState } from 'react';
 import { PiSidebar, PiX } from 'react-icons/pi';
 import Sidebar from './Partials/Sidebar';
 import SidebarResponsive from './Partials/SidebarResponsive';
-
 export default function AppLayout({ children, title }) {
     const [sidebarOpen, setSidebarOpen] = useState(false);
     const auth = usePage().props.auth.user;
@@ -16,8 +16,7 @@ export default function AppLayout({ children, title }) {
     return (
         <>
             <Head title={title} />
-            <Toaster position="top-center" richColors />
-
+            <ClientOnlyToaster position="top-center" richColors />
             <div>
                 <Transition.Root show={sidebarOpen} as={Fragment}>
                     <Dialog as="div" className="relative z-50 lg:hidden" onClose={setSidebarOpen}>
@@ -110,6 +109,9 @@ export default function AppLayout({ children, title }) {
 
                 <main className="py-10 lg:pl-72">
                     <div className="px-4 sm:px-6 lg:px-8">{children}</div>
+                    <div className="fixed bottom-5 end-5 flex w-full justify-center lg:justify-end">
+                        <ThemeSwitcher />
+                    </div>
                 </main>
             </div>
         </>
