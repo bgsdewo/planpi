@@ -185,7 +185,9 @@ export default function Index({ page_settings, ...props }) {
                                                             </DropdownMenuTrigger>
                                                             <DropdownMenuContent align="end" className="w-48">
                                                                 <DropdownMenuItem asChild>
-                                                                    <Link href={route('users.edit'[user])}>Detail</Link>
+                                                                    <Link href={route('users.edit', user.id)}>
+                                                                        Edit
+                                                                    </Link>
                                                                 </DropdownMenuItem>
                                                                 <DropdownMenuGroup>
                                                                     <ActionDialog
