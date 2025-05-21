@@ -4,22 +4,23 @@ import InputLabel from '@/Components/InputLabel';
 import TextInput from '@/Components/TextInput';
 import { Button } from '@/Components/ui/button';
 import { Card, CardContent } from '@/Components/ui/card';
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/Components/ui/select';
 import AppLayout from '@/Layouts/AppLayout';
 import { flashMessage } from '@/lib/utils';
 import { useForm } from '@inertiajs/react';
 import { useRef } from 'react';
 import { toast } from 'sonner';
 
-export default function Create({ page_settings, visibilities }) {
+export default function Create({ page_settings }) {
     const coverRef = useRef(null);
     const logoRef = useRef(null);
 
     const { data, setData, processing, reset, post, errors } = useForm({
         name: '',
-        cover: '',
-        logo: '',
-        visibility: 'Private',
+        username: '',
+        email: '',
+        password: '',
+        password_confirmation: '',
+        avatar: '',
         _method: page_settings.method,
     });
 
@@ -56,52 +57,62 @@ export default function Create({ page_settings, visibilities }) {
                                         />
                                         {errors.name && <InputError message={errors.name} />}
                                     </div>
-
                                     <div className="col-span-full">
-                                        <InputLabel htmlFor="cover" value="Cover" />
+                                        <InputLabel htmlFor="username" value="Username" />
+                                        <TextInput
+                                            type="text"
+                                            name="username"
+                                            id="username"
+                                            value={data.username}
+                                            onChange={(e) => setData(e.target.name, e.target.value)}
+                                        />
+                                        {errors.username && <InputError message={errors.username} />}
+                                    </div>
+                                    <div className="col-span-full">
+                                        <InputLabel htmlFor="email" value="Email" />
+                                        <TextInput
+                                            type="email"
+                                            name="email"
+                                            id="email"
+                                            value={data.email}
+                                            onChange={(e) => setData(e.target.name, e.target.value)}
+                                        />
+                                        {errors.email && <InputError message={errors.email} />}
+                                    </div>
+                                    <div className="col-span-full">
+                                        <InputLabel htmlFor="password" value="Password" />
+                                        <TextInput
+                                            type="password"
+                                            name="password"
+                                            id="password"
+                                            value={data.password}
+                                            onChange={(e) => setData(e.target.name, e.target.value)}
+                                        />
+                                        {errors.password && <InputError message={errors.password} />}
+                                    </div>
+                                    <div className="col-span-full">
+                                        <InputLabel htmlFor="password_confirmation" value="Password Confirmation" />
+                                        <TextInput
+                                            type="password"
+                                            name="password_confirmation"
+                                            id="password_confirmation"
+                                            value={data.password_confirmation}
+                                            onChange={(e) => setData(e.target.name, e.target.value)}
+                                        />
+                                        {errors.password_confirmation && (
+                                            <InputError message={errors.password_confirmation} />
+                                        )}
+                                    </div>
+                                    <div className="col-span-full">
+                                        <InputLabel htmlFor="avatar" value="Avatar" />
                                         <TextInput
                                             type="file"
-                                            name="cover"
-                                            id="cover"
-                                            ref={coverRef}
+                                            name="avatar"
+                                            id="avatar"
+                                            value={data.avatar}
                                             onChange={(e) => setData(e.target.name, e.target.files[0])}
                                         />
-                                        {errors.cover && <InputError message={errors.cover} />}
-                                    </div>
-
-                                    <div className="col-span-full">
-                                        <InputLabel htmlFor="logo" value="Logo" />
-                                        <TextInput
-                                            type="file"
-                                            name="logo"
-                                            id="logo"
-                                            ref={logoRef}
-                                            onChange={(e) => setData(e.target.name, e.target.files[0])}
-                                        />
-                                        {errors.logo && <InputError message={errors.logo} />}
-                                    </div>
-
-                                    <div className="col-span-full">
-                                        <InputLabel htmlFor="visibility" value="Visibility" />
-                                        <Select
-                                            value={data.visibility}
-                                            onValueChange={(value) => setData('visibility', value)}
-                                        >
-                                            <SelectTrigger>
-                                                <SelectValue>
-                                                    {visibilities.find((v) => v.value == data.visibility)?.label ??
-                                                        'Select a Visibility'}
-                                                </SelectValue>
-                                            </SelectTrigger>
-                                            <SelectContent>
-                                                {visibilities.map((visibility, index) => (
-                                                    <SelectItem key={index} value={visibility.value}>
-                                                        {visibility.label}
-                                                    </SelectItem>
-                                                ))}
-                                            </SelectContent>
-                                        </Select>
-                                        {errors.visibility && <InputError message={errors.visibility} />}
+                                        {errors.avatar && <InputError message={errors.avatar} />}
                                     </div>
                                 </div>
                             </div>
@@ -136,4 +147,4 @@ export default function Create({ page_settings, visibilities }) {
     );
 }
 
-Create.layout = (page) => <AppLayout children={page} title="Workspace Create" />;
+Create.layout = (page) => <AppLayout children={page} title={page.props.page_settings.title} />;
