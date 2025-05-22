@@ -172,3 +172,6 @@ video 15.1
 
 video 15.2
 ->php artisan make:observer CardObserver
+
+video 16.4
+->npm install ziggy-js
