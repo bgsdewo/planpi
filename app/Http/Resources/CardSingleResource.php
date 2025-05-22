@@ -5,6 +5,8 @@ namespace App\Http\Resources;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
 use Carbon\Carbon;
+use App\Http\Resources\MemberResource;
+
 class CardSingleResource extends JsonResource
 {
     /**
@@ -27,6 +29,8 @@ class CardSingleResource extends JsonResource
             'status' => $this->status->value,
             'priority' => $this->priority,
             'created_at' => $this ->created_at->format('d M Y'),
+            'members' => MemberResource::collection($this->members),
+            'members_count' => $this->members_count,
         ];
     }
 }
