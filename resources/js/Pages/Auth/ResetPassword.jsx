@@ -33,7 +33,7 @@ export default function ResetPassword({ token, email }) {
                 <Card>
                     <CardHeader>
                         <Link href="/" className="text-4xl font-black leading-relaxed tracking-tighter">
-                            Plannify<span className="text-red-500">.</span>
+                            ProDay<span className="text-red-500">.</span>
                         </Link>
                     </CardHeader>
                     <CardContent>
