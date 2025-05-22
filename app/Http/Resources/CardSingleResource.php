@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
 use Carbon\Carbon;
 use App\Http\Resources\MemberResource;
+use App\Http\Resources\TaskResource;
 
 class CardSingleResource extends JsonResource
 {
@@ -33,6 +34,8 @@ class CardSingleResource extends JsonResource
             'members_count' => $this->members_count,
             'attachments' => $this->attachments,
             'has_attachment' => $this->attachments()->exists(),
+            'tasks' => TaskResource::collection($this ->tasks),
+            'has_tasks' => $this->tasks()->exists(),
         ];
     }
 }
