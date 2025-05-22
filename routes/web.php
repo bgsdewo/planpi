@@ -53,6 +53,7 @@ Route::get('dashboard', [DashboardController::class, 'index'])
 
     Route::controller(AttachmentController::class)->group(function () {
         Route::post('cards/attachment/{card}/create', 'store')->name('attachments.store');
+        Route::delete('cards/attachment/{card}/destroy/{attachment}', 'destroy')->name('attachments.destroy');
     })->middleware('auth');
 
 Route::middleware('auth')->group(function () {
