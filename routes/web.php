@@ -61,6 +61,7 @@ Route::get('dashboard', [DashboardController::class, 'index'])
 
     Route::controller(TaskController::class)->group(function () {
         Route::post('cards/tasks/{card}/create', 'store')->name('tasks.store');
+        Route::delete('cards/tasks/{card}/destroy/{task}', 'destroy')->name('tasks.destroy');
     })->middleware('auth');
 
 Route::middleware('auth')->group(function () {
