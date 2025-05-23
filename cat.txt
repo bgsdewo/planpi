@@ -131,3 +131,7 @@ video 7.7
 
 video 7.8
 ->php artisan make:resource TaskResource
+
+video 8.1
+->npm install @dnd-kit/core @dnd-kit/sorttable
+->npm install @dnd-kit/utilities
