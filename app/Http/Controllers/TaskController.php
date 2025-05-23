@@ -5,6 +5,7 @@ use App\Models\Card;
 use Illuminate\Http\Request;
 use Illuminate\Http\RedirectResponse;
 use App\Models\Task;
+use App\Models\Task\Children;
 
 class TaskController extends Controller
 {
@@ -31,4 +32,54 @@ class TaskController extends Controller
 
         return back();
     }
+
+    public function item(Card $card, Task $task, Request $request): RedirectResponse
+    {
+        $request->validate([
+            'item' => [
+                'required',
+                'string',
+                'max:255'
+            ]
+        ]);
+
+        $task->children()->create([
+            'card_id' => $card->id,
+            'user_id' => $request->user()->id,
+            'title' => $request->item
+        ]);
+
+       flashMessage("Success added item to task $task->title");
+
+        return back();
+    }
+
+    public function completed(Card $card, Task $task): RedirectResponse
+    {
+        $previous_is_completed = $task->is_completed;
+
+        $task->update([
+            'is_completed' => !$task->is_completed,
+        ]);
+
+        $parent = Task::findOrFail($task->parent_id);
+
+        if (Task::where('parent_id', $parent->id)->count() === Task::where('parent_id', $parent->id)->where('is_completed', true)->count()) {
+            $parent->update([
+                'is_completed' =>true,
+            ]);
+
+            flashMessage('The task is successfully marked');
+
+        }else {
+            $parent ->update([
+                'is_completed' =>false,
+            ]);
+
+            flashMessage('The task is successfully ' . ($previous_is_completed ? 'unmarked' : 'marked'));
+
+        }
+        return back();
+    }
+
 }
