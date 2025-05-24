@@ -52,26 +52,34 @@ export default function CardList({ card, workspace, handleDeleteCard }) {
                             {card.title}
                         </Link>
                     </CardTitle>
-                    <DropdownMenu>
-                        <DropdownMenuTrigger>
-                            <PiDotsThreeOutlineFill className="size-4" />
-                        </DropdownMenuTrigger>
-                        <DropdownMenuContent align="end" className="w-48">
-                            <DropdownMenuItem asChild>
-                                <Link href={route('cards.edit', [workspace, card])}>Edit</Link>
-                            </DropdownMenuItem>
-                            <DropdownMenuGroup>
-                                <ActionDialog
-                                    trigger={
-                                        <DropdownMenuItem onSelect={(e) => e.preventDefault()}>Delete</DropdownMenuItem>
-                                    }
-                                    tittle="Delete Card"
-                                    description="Are you sure want to delete this card?"
-                                    action={() => handleDeleteCard(card.id)}
-                                />
-                            </DropdownMenuGroup>
-                        </DropdownMenuContent>
-                    </DropdownMenu>
+                    {(card.can.edit_card || card.can.delete_card) && (
+                        <DropdownMenu>
+                            <DropdownMenuTrigger>
+                                <PiDotsThreeOutlineFill className="size-4" />
+                            </DropdownMenuTrigger>
+                            <DropdownMenuContent align="end" className="w-48">
+                                {card.can.edit_card && (
+                                    <DropdownMenuItem asChild>
+                                        <Link href={route('cards.edit', [workspace, card])}>Edit</Link>
+                                    </DropdownMenuItem>
+                                )}
+                                {card.can.delete_card && (
+                                    <DropdownMenuGroup>
+                                        <ActionDialog
+                                            trigger={
+                                                <DropdownMenuItem onSelect={(e) => e.preventDefault()}>
+                                                    Delete
+                                                </DropdownMenuItem>
+                                            }
+                                            tittle="Delete Card"
+                                            description="Are you sure want to delete this card?"
+                                            action={() => handleDeleteCard(card.id)}
+                                        />
+                                    </DropdownMenuGroup>
+                                )}
+                            </DropdownMenuContent>
+                        </DropdownMenu>
+                    )}
                 </div>
                 <div>
                     <GetPriorityBadge priority={card.priority} />

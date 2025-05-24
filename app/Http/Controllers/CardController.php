@@ -11,6 +11,7 @@ use App\Models\Card;
 use App\Enums\CardStatus;
 use App\Enums\CardPriority;
 use App\Http\Resources\CardSingleResource;
+use Illuminate\Support\Facades\Gate;
 
 class CardController extends Controller
 {
@@ -79,6 +80,7 @@ class CardController extends Controller
     }
     public function update(Workspace $workspace,Card $card, CardRequest $request):RedirectResponse
     {
+        Gate::authorize('update_card',$card);
         $last_status = $card->status->value;
         $card->update([
             'title' => $request->title,
@@ -99,6 +101,7 @@ class CardController extends Controller
 
     public function destroy(Workspace $workspace, Card $card) : RedirectResponse
     {
+        Gate::authorize('delete_card',$card);
         $last_status = $card->status->value;
         $card->delete();
 

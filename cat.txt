@@ -153,3 +153,6 @@ video 13.2
 
 video 14.2
 ->php artisan make:policy WorkspacePolicy -m Workspace
+
+video 14.3
+->php artisan make:policy CardPolicy -m Workspace
