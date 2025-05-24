@@ -34,7 +34,7 @@ export default function Login({ status, canResetPassword }) {
                 <Card>
                     <CardHeader>
                         <Link href="/" className="text-4xl font-black leading-relaxed tracking-tighter">
-                            Plannify<span className="text-red-500">.</span>
+                            ProDay<span className="text-red-500">.</span>
                         </Link>
                         <h2 className="text-left text-lg font-medium leading-relaxed tracking-tight text-muted-foreground">
                             Sign in to your account

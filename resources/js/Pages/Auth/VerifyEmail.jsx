@@ -18,7 +18,7 @@ export default function VerifyEmail({ status }) {
                 <Card>
                     <CardHeader>
                         <Link href="/" className="text-4xl font-black leading-relaxed tracking-tighter">
-                            Plannify<span className="text-red-500">.</span>
+                            ProDay<span className="text-red-500">.</span>
                         </Link>
                         <h2 className="text-left text-lg font-medium leading-9 tracking-tight text-muted-foreground">
                             Thanks for signing up! Before getting started, could you verify your email address by

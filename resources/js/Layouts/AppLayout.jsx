@@ -78,7 +78,7 @@ export default function AppLayout({ children, title }) {
                                 href="/"
                                 className="-m-1.5 p-1.5 text-2xl font-black leading-relaxed tracking-tighter"
                             >
-                                Plannify<span className="text-red-500">.</span>
+                                ProDay<span className="text-red-500">.</span>
                             </Link>
                         </div>
                         {/* Sidebar */}
