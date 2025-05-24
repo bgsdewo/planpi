@@ -55,7 +55,7 @@ export default function SidebarResponsive({ auth, url, workspaces }) {
                             </li>
                             <li>
                                 <Link
-                                    href="#"
+                                    href={route('mytasks.index')}
                                     className={cn(
                                         url.startsWith('/my-tasks')
                                             ? 'bg-red-500 text-white'
@@ -69,7 +69,7 @@ export default function SidebarResponsive({ auth, url, workspaces }) {
                                             'h-6 w-6 shrink-0',
                                         )}
                                     />
-                                    My Task
+                                    My Tasks
                                 </Link>
                             </li>
                             <li>

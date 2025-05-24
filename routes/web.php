@@ -10,7 +10,7 @@ use Inertia\Inertia;
 use App\Http\Controllers\MemberCardController;
 use App\Http\Controllers\AttachmentController;
 use App\Http\Controllers\TaskController;
-
+use App\Http\Controllers\MyTaskController;
 
 
 Route::get('/', function () {
@@ -65,6 +65,9 @@ Route::get('dashboard', [DashboardController::class, 'index'])
         Route::post('cards/tasks/{card}/{task}/item', 'item')->name('tasks.item');
         Route::put('cards/tasks/{card}/{task}/completed', 'completed')->name('tasks.completed');
     })->middleware('auth');
+
+    Route::get('my-tasks',MyTaskController::class)->name('mytasks.index');
+
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
