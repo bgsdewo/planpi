@@ -10,15 +10,29 @@ use App\Models\Workspace;
 use App\Models\Card;
 use App\Enums\CardStatus;
 use Carbon\Carbon;
+use App\Http\Resources\MyTaskResource;
 class DashboardController extends Controller
 {
  public function index():Response
  {
+    $tasks = Member::query()
+    ->where('members.user_id', request()->user()->id)
+    ->whereHasMorph(
+        'memberable',
+        Card::class,
+        fn($query) => $query->where('status', CardStatus::TODO->value)
+    )
+    ->latest()
+    ->limit(10)
+    ->get();
+
     return inertia('Dashboard',[
         'page_settings' => [
             'title' => 'Dashboard',
             'subtitle' => 'You can see a summary of the information here',
         ],
+
+        'tasks' => MyTaskResource::collection($tasks),
         'productivity_chart' => $this->productivityChart(),
         'count' => [
             'users' => fn() => User::count(),
