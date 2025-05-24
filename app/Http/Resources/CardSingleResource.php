@@ -23,10 +23,7 @@ class CardSingleResource extends JsonResource
             'workspace_id' =>$this->workspace_id,
             'title' =>$this->title,
             'description' =>$this->description,
-            'deadline' => [
-                'format' => Carbon::createFromFormat('Y-m-d', $this->deadline)->format('d M Y'),
-                'unformatted' => $this->deadline,
-            ],
+            'deadline' => (int) Carbon::now()->diffInDays(Carbon::createFromFormat('Y-m-d',$this->deadline)),
             'status' => $this->status->value,
             'priority' => $this->priority,
             'created_at' => $this ->created_at->format('d M Y'),
