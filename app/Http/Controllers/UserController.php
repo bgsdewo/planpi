@@ -65,7 +65,7 @@ class UserController extends Controller
             'email' => $request -> email,
             'password' => Hash::make($request->password),
             'avatar' => $this->upload_file($request,'avatar','users'),
-        ]);
+        ])->assignRole('member');
         flashMessage('User information saved successfully');
         return to_route('users.index');
     }

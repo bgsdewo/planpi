@@ -21,7 +21,7 @@ class UserSingleResource extends JsonResource
             'username'=> $this->username,
             'email'=> $this->email,
             'avatar' => $this->avatar !== null ? Storage::url($this->avatar) : null,
-
+            'is_admin' => $this->when($this->hasRole('admin'), true),
         ];
     }
 }
