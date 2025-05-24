@@ -150,3 +150,6 @@ video 13.1
 
 video 13.2
 ->php artisan make:request UserRequest
+
+video 14.2
+->php artisan make:policy WorkspacePolicy -m Workspace
