@@ -140,3 +140,6 @@ video 9.1
 ->php artisan make:controller MyTaskController -i
 ->php artisan make:resource MyTaskResource
 ->php artisan make:resource MyTaskSingleResource
+
+video 12.2
+->npm install chart.js react-chartjs-2
