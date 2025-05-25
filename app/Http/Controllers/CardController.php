@@ -43,10 +43,7 @@ class CardController extends Controller
             'priority' => $request -> priority,
         ]);
 
-        $card->members()->create([
-            'user_id' => $request->user()->id,
-            'role' => $card->user_id == $request->user()->id ? 'Owner' : 'Member',
-        ]);
+
 
         flashMessage('Card information saved succesfully');
         return to_route('cards.edit',[$workspace,$card]);

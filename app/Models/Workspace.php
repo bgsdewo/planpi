@@ -11,7 +11,10 @@ use App\Enums\WorkspaceVisibility;
 use App\Models\User;
 use App\Models\Card;
 use App\Models\Member;
+use Illuminate\Database\Eloquent\Attributes\ObservedBy;
+use App\Observers\WorkspaceObserver;
 
+#[ObservedBy(WorkspaceObserver::class)]
 class Workspace extends Model
 {
     use HasFactory;
