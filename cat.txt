@@ -156,3 +156,6 @@ video 14.2
 
 video 14.3
 ->php artisan make:policy CardPolicy -m Workspace
+
+video 15.1
+->php artisan make:observer WorkspaceObserver
