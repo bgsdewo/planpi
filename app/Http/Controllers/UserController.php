@@ -17,7 +17,7 @@ class UserController extends Controller
     public function index(): Response
 {
     $users = User::query()
-        ->select(['id', 'name', 'email', 'username', 'avatar', 'created_at'])
+        ->select(['id', 'name', 'email', 'username',  'created_at'])
         ->when(request()->search, function($query, $value) {
             $query->whereAny([
                 'name',
@@ -64,12 +64,13 @@ class UserController extends Controller
             'username' => $request->username,
             'email' => $request -> email,
             'password' => Hash::make($request->password),
-            'avatar' => $this->upload_file($request,'avatar','users'),
+
         ])->assignRole('member');
         flashMessage('User information saved successfully');
         return to_route('users.index');
     }
 
+    // tanda
     public function edit(User $user): Response
     {
         return inertia('Users/Edit',[
@@ -82,6 +83,8 @@ class UserController extends Controller
             ],
         ]);
     }
+
+    //tanda
     public function update( User $user, UserRequest $request): RedirectResponse
     {
         $user->update([
@@ -89,7 +92,7 @@ class UserController extends Controller
             'username' => $request->username,
             'email' => $request -> email,
             'password' => $request->password ? Hash::make($request->password) : $user->password,
-            'avatar' => $request->hasFile('avatar') ? $this->upload_file($request,'avatar','users') : $user->avatar,
+
         ]);
         flashMessage('Successfully updated user information');
         return to_route('users.index');
@@ -97,7 +100,7 @@ class UserController extends Controller
 
     public function destroy(User $user): RedirectResponse
     {
-       $this->delete_file($user, 'avatar');
+
        $user->delete();
        flashMessage('The user has been successfully deleted');
        return to_route('users.index');

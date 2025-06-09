@@ -42,12 +42,10 @@ export default function ForgotPassword({ status }) {
                                         value={data.email}
                                         className="mt-1 block w-full"
                                         isFocused={true}
-                                        placeHolder="Email Address"
-                                        onChange={(e) => setData('email', e.target.email)}
-                                        onErrors={
-                                            errors.email && <InputError message={errors.email} className="mt-2" />
-                                        }
+                                        placeholder="Email Address"
+                                        onChange={(e) => setData('email', e.target.value)}
                                     />
+                                    {errors.email && <InputError message={errors.email} className="mt-2" />}{' '}
                                 </div>
                                 <div>
                                     <Button type="submit" variant="red" className="w-full" disabled={processing}>

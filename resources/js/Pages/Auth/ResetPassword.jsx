@@ -48,11 +48,9 @@ export default function ResetPassword({ token, email }) {
                                         type="email"
                                         value={data.email}
                                         className="mt-1 block w-full"
-                                        onChange={(e) => setData('email', e.target.email)}
-                                        onErrors={
-                                            errors.email && <InputError message={errors.email} className="mt-2" />
-                                        }
+                                        onChange={(e) => setData('email', e.target.value)}
                                     />
+                                    <InputError message={errors.email} className="mt-2" />
                                 </div>
                                 <div>
                                     <InputLabel htmlFor="password" value="Password" />
@@ -62,11 +60,9 @@ export default function ResetPassword({ token, email }) {
                                         type="password"
                                         value={data.password}
                                         className="mt-1 block w-full"
-                                        onChange={(e) => setData('password', e.target.password)}
-                                        onErrors={
-                                            errors.password && <InputError message={errors.password} className="mt-2" />
-                                        }
+                                        onChange={(e) => setData('password', e.target.value)}
                                     />
+                                    <InputError message={errors.password} className="mt-2" />
                                 </div>
                                 <div>
                                     <InputLabel htmlFor="password_confirmation" value="Password Confirmation" />
@@ -76,16 +72,11 @@ export default function ResetPassword({ token, email }) {
                                         type="password"
                                         value={data.password_confirmation}
                                         className="mt-1 block w-full"
-                                        onChange={(e) =>
-                                            setData('password_confirmation', e.target.password_confirmation)
-                                        }
-                                        onErrors={
-                                            errors.password_confirmation && (
-                                                <InputError message={errors.password_confirmation} className="mt-2" />
-                                            )
-                                        }
+                                        onChange={(e) => setData('password_confirmation', e.target.value)}
                                     />
+                                    <InputError message={errors.password_confirmation} className="mt-2" />
                                 </div>
+
                                 <div>
                                     <Button type="submit" variant="red" className="w-full" disabled={processing}>
                                         Reset Password

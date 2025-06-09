@@ -20,7 +20,6 @@ export default function Edit({ user, page_settings }) {
         email: user.email ?? '',
         password: '',
         password_confirmation: '',
-        avatar: '',
         _method: page_settings.method,
     });
 
@@ -103,16 +102,6 @@ export default function Edit({ user, page_settings }) {
                                             <InputError message={errors.password_confirmation} />
                                         )}
                                     </div>
-                                    <div className="col-span-full">
-                                        <InputLabel htmlFor="avatar" value="Avatar" />
-                                        <TextInput
-                                            type="file"
-                                            name="avatar"
-                                            id="avatar"
-                                            onChange={(e) => setData(e.target.name, e.target.files[0])}
-                                        />
-                                        {errors.avatar && <InputError message={errors.avatar} />}
-                                    </div>
                                 </div>
                             </div>
 
@@ -123,12 +112,12 @@ export default function Edit({ user, page_settings }) {
                                     onClick={() => {
                                         setData({
                                             name: '',
-                                            cover: '',
-                                            logo: '',
-                                            visibility: 'Private',
+                                            username: '',
+                                            email: '',
+                                            password: '',
+                                            password_confirmation: '',
+                                            _method: page_settings.method,
                                         });
-                                        coverRef.current.value = null;
-                                        logoRef.current.value = null;
                                     }}
                                 >
                                     Reset
