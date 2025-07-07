@@ -103,6 +103,7 @@ export default function Create({ page_settings }) {
                                             <InputError message={errors.password_confirmation} />
                                         )}
                                     </div>
+                                    {/*
                                     <div className="col-span-full">
                                         <InputLabel htmlFor="avatar" value="Avatar" />
                                         <TextInput
@@ -113,6 +114,7 @@ export default function Create({ page_settings }) {
                                         />
                                         {errors.avatar && <InputError message={errors.avatar} />}
                                     </div>
+                                     */}
                                 </div>
                             </div>
 

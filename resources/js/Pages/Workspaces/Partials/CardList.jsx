@@ -48,7 +48,7 @@ export default function CardList({ card, workspace, handleDeleteCard }) {
             <CardHeader>
                 <div className="flex items-center justify-between gap-x-4">
                     <CardTitle className="line-clamp-2 text-base leading-relaxed tracking-tighter">
-                        <Link href={route('cards.show', [workspace, card])} className="hover:text-red-500">
+                        <Link href={route('cards.edit', [workspace, card])} className="hover:text-red-500">
                             {card.title}
                         </Link>
                     </CardTitle>
@@ -108,13 +108,12 @@ export default function CardList({ card, workspace, handleDeleteCard }) {
                             </div>
                         </div>
                     )}
-                    {/* dari sini */}
                     <div className="flex items-center justify-between gap-x-4">
                         {card.has_task && (
                             <div className="flex items-center gap-x-1">
                                 <PiCheckSquare className="h-4 w-4 text-muted-foreground" />
                                 <span className="text-sm leading-relaxed tracking-tighter text-muted-foreground">
-                                    {card.tasks_count}Tasks
+                                    {card.tasks_count} Tasks
                                 </span>
                             </div>
                         )}
@@ -122,18 +121,28 @@ export default function CardList({ card, workspace, handleDeleteCard }) {
                             <div className="flex items-center gap-x-1">
                                 <PiUser className="h-4 w-4 text-muted-foreground" />
                                 <span className="text-sm leading-relaxed tracking-tighter text-muted-foreground">
-                                    {card.members_count}Members
+                                    {card.members_count} Members
                                 </span>
                             </div>
                         )}
+
+                        {/* ========================================================== */}
+                        {/* INI BAGIAN UTAMA PERUBAHANNYA                               */}
+                        {/* ========================================================== */}
                         {card.has_attachment && (
-                            <div className="flex items-center gap-x-1">
+                            <Link
+                                href={route('cards.edit', [workspace, card]) + '#attachments'}
+                                className="flex items-center gap-x-1"
+                            >
                                 <PiLinkSimple className="h-4 w-4 text-muted-foreground" />
-                                <span className="text-sm leading-relaxed tracking-tighter text-muted-foreground">
-                                    {card.attachments_count}Files
+                                <span className="text-sm leading-relaxed tracking-tighter text-muted-foreground hover:text-red-500 hover:underline">
+                                    {card.attachments_count} Files
                                 </span>
-                            </div>
+                            </Link>
                         )}
+                        {/* ========================================================== */}
+                        {/* AKHIR BAGIAN PERUBAHAN                                     */}
+                        {/* ========================================================== */}
                     </div>
                 </div>
             </CardContent>

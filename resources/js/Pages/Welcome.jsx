@@ -69,12 +69,13 @@ export default function Welcome() {
                         <div className="mx-auto max-w-7xl px-6 lg:px-8">
                             <div className="mx-auto max-w-2xl text-center">
                                 <h1 className="text-4xl font-bold leading-relaxed tracking-tight text-foreground sm:text-6xl">
-                                    Transforming Ideas into Reality with Your Kanban Board
+                                    Build Your Dreams, One Card at a Time
                                 </h1>
                                 <p className="mt-6 text-lg leading-8 text-muted-foreground">
-                                    Where creativity meets productivity! With our intuitive Kanban Board, you can
-                                    effortlessly organize your tasks into clear categories. Boost your team's
-                                    efficiency, track project progress, and witness your ideas come to life.
+                                    Bring structure to your creativity. With a simple and visual task board, you can
+                                    organize your ideas, manage progress with ease, and keep your goals within reach.
+                                    Whether you're working solo or with a team, every card moves you closer to turning
+                                    dreams into reality.
                                 </p>
                                 <div className="mt-10 flex items-center justify-center gap-x-6">
                                     <Button variant="red" asChild>

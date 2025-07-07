@@ -3,7 +3,6 @@ import { Link, useForm } from '@inertiajs/react';
 import { useEffect } from 'react';
 
 // Import komponen tambahan
-import Checkbox from '@/Components/Checkbox';
 import InputError from '@/Components/InputError';
 import InputLabel from '@/Components/InputLabel';
 import TextInput from '@/Components/TextInput';
@@ -66,12 +65,12 @@ export default function Login({ status, canResetPassword }) {
                                         <InputLabel htmlFor="password" value="Password" />
                                         {canResetPassword && (
                                             <div className="text-sm">
-                                                <Link
+                                                {/* <Link
                                                     href={route('password.request')}
                                                     className="font-semibold text-red-500 hover:text-red-600"
                                                 >
                                                     Forgot Your Password?
-                                                </Link>
+                                                </Link> */}
                                             </div>
                                         )}
                                     </div>
@@ -87,7 +86,7 @@ export default function Login({ status, canResetPassword }) {
                                 </div>
 
                                 {/* Remember Me */}
-                                <div className="mt-4 block">
+                                {/* <div className="mt-4 block">
                                     <label className="flex items-center">
                                         <Checkbox
                                             name="remember"
@@ -96,7 +95,7 @@ export default function Login({ status, canResetPassword }) {
                                         />
                                         <span className="ms-2 text-sm text-muted-foreground">Remember Me</span>
                                     </label>
-                                </div>
+                                </div> */}
 
                                 {/* Submit */}
                                 <div>
