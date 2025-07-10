@@ -4,7 +4,6 @@ import InputLabel from '@/Components/InputLabel';
 import TextInput from '@/Components/TextInput';
 import { Button } from '@/Components/ui/button';
 import { Card, CardContent } from '@/Components/ui/card';
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/Components/ui/select';
 import AppLayout from '@/Layouts/AppLayout';
 import { flashMessage } from '@/lib/utils';
 import { useForm } from '@inertiajs/react';
@@ -81,28 +80,45 @@ export default function Create({ page_settings, visibilities }) {
                                         {errors.logo && <InputError message={errors.logo} />}
                                     </div>
 
+                                    {/*
                                     <div className="col-span-full">
                                         <InputLabel htmlFor="visibility" value="Visibility" />
                                         <Select
                                             value={data.visibility}
-                                            onValueChange={(value) => setData('visibility', value)}
+                                            onValueChange={(value) =>
+                                                setData('visibility', value)
+                                            }
                                         >
                                             <SelectTrigger>
                                                 <SelectValue>
-                                                    {visibilities.find((v) => v.value == data.visibility)?.label ??
-                                                        'Select a Visibility'}
+                                                    {
+                                                        visibilities.find(
+                                                            (v) =>
+                                                                v.value ==
+                                                                data.visibility
+                                                        )?.label ??
+                                                        'Select a Visibility'
+                                                    }
                                                 </SelectValue>
                                             </SelectTrigger>
                                             <SelectContent>
-                                                {visibilities.map((visibility, index) => (
-                                                    <SelectItem key={index} value={visibility.value}>
-                                                        {visibility.label}
-                                                    </SelectItem>
-                                                ))}
+                                                {visibilities.map(
+                                                    (visibility, index) => (
+                                                        <SelectItem
+                                                            key={index}
+                                                            value={visibility.value}
+                                                        >
+                                                            {visibility.label}
+                                                        </SelectItem>
+                                                    )
+                                                )}
                                             </SelectContent>
                                         </Select>
-                                        {errors.visibility && <InputError message={errors.visibility} />}
+                                        {errors.visibility && (
+                                            <InputError message={errors.visibility} />
+                                        )}
                                     </div>
+                                    */}
                                 </div>
                             </div>
 

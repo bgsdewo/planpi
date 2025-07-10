@@ -3,10 +3,10 @@ import InputLabel from '@/Components/InputLabel';
 import TextInput from '@/Components/TextInput';
 import { Button } from '@/Components/ui/button';
 import { Card, CardContent } from '@/Components/ui/card';
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/Components/ui/select';
 import { flashMessage } from '@/lib/utils';
 import { router, useForm } from '@inertiajs/react';
 import { toast } from 'sonner';
+
 export default function Editworkspace({ workspace, page_settings, visibilities }) {
     const { data, setData, processing, errors, reset, post } = useForm({
         name: workspace.name ?? '',
@@ -15,6 +15,7 @@ export default function Editworkspace({ workspace, page_settings, visibilities }
         visibility: workspace.visibility ?? 'Private',
         _method: page_settings.method,
     });
+
     const onHandleChange = (e) => {
         setData(e.target.name, e.target.value);
     };
@@ -30,6 +31,7 @@ export default function Editworkspace({ workspace, page_settings, visibilities }
             },
         });
     };
+
     return (
         <Card className="md:col-span-2">
             <CardContent>
@@ -44,8 +46,8 @@ export default function Editworkspace({ workspace, page_settings, visibilities }
                                     id="name"
                                     value={data.name}
                                     onChange={onHandleChange}
-                                    onErrors={errors.name && <InputError message={errors.name} />}
                                 />
+                                {errors.name && <InputError message={errors.name} />}
                             </div>
 
                             <div className="col-span-full">
@@ -55,8 +57,8 @@ export default function Editworkspace({ workspace, page_settings, visibilities }
                                     name="cover"
                                     id="cover"
                                     onChange={(e) => setData(e.target.name, e.target.files[0])}
-                                    onErrors={errors.cover && <InputError message={errors.cover} />}
                                 />
+                                {errors.cover && <InputError message={errors.cover} />}
                             </div>
 
                             <div className="col-span-full">
@@ -66,33 +68,49 @@ export default function Editworkspace({ workspace, page_settings, visibilities }
                                     name="logo"
                                     id="logo"
                                     onChange={(e) => setData(e.target.name, e.target.files[0])}
-                                    onErrors={errors.logo && <InputError message={errors.logo} />}
                                 />
+                                {errors.logo && <InputError message={errors.logo} />}
                             </div>
 
+                            {/*
                             <div className="col-span-full">
                                 <InputLabel htmlFor="visibility" value="Visibility" />
                                 <Select
                                     defaultValue={data.visibility}
-                                    onValueChange={(value) => setData('visibility', value)}
+                                    onValueChange={(value) =>
+                                        setData('visibility', value)
+                                    }
                                 >
                                     <SelectTrigger>
                                         <SelectValue>
-                                            {visibilities.find((visibility) => visibility.value == data.visibility)
-                                                ?.label ?? 'Select a Visibility'}
+                                            {
+                                                visibilities.find(
+                                                    (visibility) =>
+                                                        visibility.value ==
+                                                        data.visibility
+                                                )?.label ?? 'Select a Visibility'
+                                            }
                                         </SelectValue>
                                     </SelectTrigger>
                                     <SelectContent>
                                         {visibilities.map((visibility, index) => (
-                                            <SelectItem key={index} value={visibility.value}>
+                                            <SelectItem
+                                                key={index}
+                                                value={visibility.value}
+                                            >
                                                 {visibility.label}
                                             </SelectItem>
                                         ))}
                                     </SelectContent>
                                 </Select>
+                                {errors.visibility && (
+                                    <InputError message={errors.visibility} />
+                                )}
                             </div>
+                            */}
                         </div>
                     </div>
+
                     <div className="flex items-center justify-between gap-x-2 py-6">
                         <Button
                             type="button"
@@ -116,6 +134,7 @@ export default function Editworkspace({ workspace, page_settings, visibilities }
                         >
                             Delete Workspace
                         </Button>
+
                         <div className="flex gap-x-2">
                             <Button type="button" variant="ghost" onClick={() => reset()}>
                                 Reset
