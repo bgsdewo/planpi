@@ -33,7 +33,7 @@ export default function CardList({ card, workspace, handleDeleteCard }) {
                 ref={setNodeRef}
                 style={style}
                 className="relative flex h-[100px] min-h-[100px] cursor-grab items-center rounded-xl border border-dashed border-muted-foreground p-2.5 text-left opacity-30"
-            ></Card>
+            />
         );
     }
 
@@ -46,24 +46,25 @@ export default function CardList({ card, workspace, handleDeleteCard }) {
             className="task relative flex cursor-grab flex-col rounded-xl hover:ring-2 hover:ring-inset hover:ring-red-500"
         >
             <CardHeader>
-                {/* ... (bagian CardTitle dan DropdownMenu tidak berubah) ... */}
                 <div className="flex items-center justify-between gap-x-4">
                     <CardTitle className="line-clamp-2 text-base leading-relaxed tracking-tighter">
                         <Link href={route('cards.edit', [workspace, card])} className="hover:text-red-500">
                             {card.title}
                         </Link>
                     </CardTitle>
-                    {(card.can.edit_card || card.can.delete_card) && (
+
+                    {(card.can.edit_workspace || card.can.edit_card || card.can.delete_card) && (
                         <DropdownMenu>
                             <DropdownMenuTrigger>
                                 <PiDotsThreeOutlineFill className="size-4" />
                             </DropdownMenuTrigger>
                             <DropdownMenuContent align="end" className="w-48">
-                                {card.can.edit_card && (
+                                {(card.can.edit_workspace || card.can.edit_card) && (
                                     <DropdownMenuItem asChild>
                                         <Link href={route('cards.edit', [workspace, card])}>Edit</Link>
                                     </DropdownMenuItem>
                                 )}
+
                                 {card.can.delete_card && (
                                     <DropdownMenuGroup>
                                         <ActionDialog
@@ -82,52 +83,61 @@ export default function CardList({ card, workspace, handleDeleteCard }) {
                         </DropdownMenu>
                     )}
                 </div>
+
                 <div>
                     <GetPriorityBadge priority={card.priority} />
                 </div>
+
                 <CardDescription className="line-clamp-4 leading-relaxed tracking-tighter">
                     {card.description}
                 </CardDescription>
             </CardHeader>
-            <CardContent className="mt-auto">
-                {' '}
-                {/* Menambahkan mt-auto agar konten bawah menempel di bawah */}
-                <div className="flex flex-col space-y-4">
-                    {card.has_task && <div>{/* ... (bagian deadline dan percentage tidak berubah) ... */}</div>}
 
-                    {/* ========================================================== */}
-                    {/* PERBAIKAN 1: Tambahkan 'flex-wrap' dan 'gap-y-2' di sini */}
-                    {/* ========================================================== */}
-                    <div className="flex flex-wrap items-center justify-between gap-x-4 gap-y-2">
+            <CardContent>
+                <div className="flex flex-col space-y-8">
+                    {card.has_task && (
+                        <div>
+                            <div className="mb-1.5 flex items-center justify-between">
+                                <p className="text-sm leading-relaxed tracking-tighter text-muted-foreground">
+                                    <span className="font-medium text-red-500">{card.percentage}</span> of 100
+                                </p>
+                                <p className="text-sm leading-relaxed tracking-tighter text-muted-foreground">
+                                    {card.deadline > 0 ? (
+                                        <span>{card.deadline} days left</span>
+                                    ) : card.deadline == 0 ? (
+                                        <span className="text-yellow-500">Today is deadline</span>
+                                    ) : (
+                                        <span className="text-red-500">Overdue</span>
+                                    )}
+                                </p>
+                            </div>
+                        </div>
+                    )}
+                    {/* dari sini */}
+                    <div className="flex items-center justify-between gap-x-4">
                         {card.has_task && (
                             <div className="flex items-center gap-x-1">
                                 <PiCheckSquare className="h-4 w-4 text-muted-foreground" />
-                                {/* ========================================================== */}
-                                {/* PERBAIKAN 2: Tambahkan 'whitespace-nowrap' di sini        */}
-                                {/* ========================================================== */}
-                                <span className="whitespace-nowrap text-sm leading-relaxed tracking-tighter text-muted-foreground">
-                                    {card.tasks_count} Tasks
+                                <span className="text-sm leading-relaxed tracking-tighter text-muted-foreground">
+                                    {card.tasks_count}Tasks
                                 </span>
                             </div>
                         )}
-                        {card.members_count > 0 && (
+                        {card.members_count > 1 && (
                             <div className="flex items-center gap-x-1">
                                 <PiUser className="h-4 w-4 text-muted-foreground" />
-                                <span className="whitespace-nowrap text-sm leading-relaxed tracking-tighter text-muted-foreground">
-                                    {card.members_count} Members
+                                <span className="text-sm leading-relaxed tracking-tighter text-muted-foreground">
+                                    {card.members_count}Members
                                 </span>
                             </div>
                         )}
                         {card.has_attachment && (
-                            <Link
-                                href={route('cards.edit', [workspace, card]) + '#attachments'}
-                                className="flex items-center gap-x-1"
-                            >
+                            <div className="flex items-center gap-x-1">
                                 <PiLinkSimple className="h-4 w-4 text-muted-foreground" />
-                                <span className="whitespace-nowrap text-sm leading-relaxed tracking-tighter text-muted-foreground hover:text-red-500 hover:underline">
-                                    {card.attachments_count} Files
+                                <span className="text-sm leading-relaxed tracking-tighter text-muted-foreground">
+                                    {card.attachments_count}Files
                                 </span>
-                            </Link>
+                            </div>
                         )}
                     </div>
                 </div>
